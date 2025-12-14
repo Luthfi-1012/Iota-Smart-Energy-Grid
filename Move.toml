@@ -1,0 +1,13 @@
+[package]
+name = "iota_project"
+edition = "2024"
+
+[dependencies]
+
+[addresses]
+iota_project = "0x0"
+pizza_box = "0x0"
+
+[dev-dependencies]
+
+[dev-addresses]
