@@ -1,3 +1,7 @@
+Contract Address/Packcage ID
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a3aaec1b-032b-4de6-b6f4-114684eb26be" />
+
+
 Iota Smart Energy Grid
 
 Iota Smart Energy Grid is a decentralized platform for trading energy (DePIN) that allows energy transactions through two methods: Global Marketplace and P2P (Peer-to-Peer). This platform leverages IOTA Testnet for efficient energy transactions, enabling users to buy and sell energy directly with low fees and fast finality.
