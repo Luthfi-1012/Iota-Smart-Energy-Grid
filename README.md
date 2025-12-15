@@ -3,140 +3,214 @@ Contract Address/Packcage ID
 
 Packcage ID (0x9187c7614b1f37c7dd40bda30af567a50eaac7f138b4988eb753c84748323552)
 
-Iota Smart Energy Grid
+# ⚡ Iota Smart Energy Grid
 
-Iota Smart Energy Grid is a decentralized platform for trading energy (DePIN) that allows energy transactions through two methods: Global Marketplace and P2P (Peer-to-Peer). This platform leverages IOTA Testnet for efficient energy transactions, enabling users to buy and sell energy directly with low fees and fast finality.
+> A decentralized energy trading platform powered by IOTA blockchain technology
 
-Key Features
-1. User Onboarding
+[![IOTA](https://img.shields.io/badge/IOTA-Testnet-131F37?style=flat&logo=iota)](https://iota.org)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://reactjs.org)
+[![DePIN](https://img.shields.io/badge/DePIN-Enabled-00D4AA?style=flat)](https://messari.io/report/state-of-depin-2023)
 
-Landing Page: Users can connect to the app by clicking “Enter App,” which opens a connection modal.
+---
 
-User Profile: The user profile is automatically created if it doesn’t exist, and the active profile information and user ID are displayed in the header.
+## 🌟 Overview
 
-2. Energy Products
+**Iota Smart Energy Grid** is a revolutionary DePIN (Decentralized Physical Infrastructure Networks) platform that transforms how we trade energy. Buy and sell energy directly with your neighbors or through a global marketplace—all powered by IOTA's fast, feeless blockchain technology.
 
-Create Listing: Users can create an energy listing by specifying the energy amount (Wh), price per kWh (IOTA), energy type, and location (lat, lng).
+### 💡 Why Choose Us?
 
-Listing Updates: Processed listings are displayed in:
+- ⚡ **Lightning Fast** - Instant energy transactions with IOTA's superior finality
+- 💰 **Low Costs** - Minimal transaction fees compared to traditional energy markets
+- 🌍 **Two Trading Modes** - Global Marketplace or Local P2P trading
+- 🔒 **Secure & Transparent** - Blockchain-backed transactions you can trust
+- 📍 **Location-Smart** - Prioritizes nearby energy sources for efficiency
 
-My Listings: Sorted by most recent (created_at_ms).
+---
 
-Marketplace: Global index, can be filtered by type, price, and location.
+## 🎯 Key Features
 
-P2P: Listings sorted by the nearest distance, pinned to the leftmost position.
+### 👤 User Onboarding
+- 🚀 **One-Click Connect** - Simple wallet connection to get started
+- 🆔 **Auto Profile Creation** - Your profile is automatically created on first login
+- 📊 **Dashboard Overview** - Track your energy production, consumption, and balance
 
-3. Energy Purchase
+### 📦 Energy Listings
+- ✍️ **Create Listings** - List your excess energy with custom pricing
+- 📍 **Geolocation Support** - Set your location for P2P recommendations
+- 🏷️ **Flexible Pricing** - Set your price per kWh in IOTA tokens
+- 🔋 **Energy Type Selection** - Specify solar, wind, hydro, or other sources
 
-Marketplace:
+### 🛒 Smart Marketplace
+- 🔍 **Advanced Filters** - Filter by energy type, price range, and location
+- 📈 **Multiple Sorting** - Sort by price, distance, or newest listings
+- 🎯 **P2P Recommendations** - Find the nearest energy sellers automatically
+- ✅ **Real-time Updates** - Listings update instantly after purchase
 
-Filters by Energy Type, Price, and Location.
+### 💳 Transactions & History
+- 💎 **IOTA Payments** - Seamless payments using IOTA Coin
+- 📜 **Complete History** - Track all your energy purchases and sales
+- 🔔 **Status Notifications** - Real-time transaction status updates
+- 🧾 **Transparent Records** - All transactions stored on-chain
 
-Sorting by price, distance, and newest.
+---
 
-Payment calculated by formula: floor(Wh/1000) * price_per_kwh.
+## 🏗️ Architecture
 
-After purchase, the listing is marked as "Sold".
+### 🧠 Data Layer
+| Component | Description |
+|-----------|-------------|
+| **My Listings** | Uses `getOwnedObjects` to retrieve user's energy listings |
+| **Global Marketplace** | Fetches `ListingCreated` events for real-time updates |
+| **P2P System** | Haversine formula calculates nearest energy sources |
+| **Location Storage** | Encoded as `vector<u8>` for efficient on-chain storage |
 
-P2P:
+### 🎨 Frontend Pages
+- 🏠 **Dashboard** - Energy production/consumption overview with visual indicators
+- 💼 **Sell Energy** - Intuitive form for creating energy listings
+- 🌐 **Marketplace** - Global energy trading hub with filters and sorting
+- 🤝 **P2P Trading** - Local peer-to-peer energy exchange
+- 📋 **My Listings** - Manage your active and sold listings
+- 📊 **Transactions** - Complete transaction history
 
-Peer recommendations are based on user geolocation and the seller’s listing location.
+---
 
-4. Transactions & History
+## 🚀 Getting Started
 
-Payment: Uses IOTA Coin for energy payment; transactions are completed via the buy_energy contract.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- IOTA-compatible wallet
 
-History: Purchase transaction history is stored and displayed sorted by timestamp (timestampMs).
+### 📥 Installation
 
-5. Data Layer
-
-My Listings & Transactions: Uses getOwnedObjects to retrieve the user's listings.
-
-Global Marketplace: Fetches event IDs from ListingCreated and combines with owned objects to quickly display new listings.
-
-P2P: Calculates the distance using Haversine and sorts listings by proximity.
-
-Location: Location is stored as a vector<u8> and decoded into a string for a clean display and accurate P2P transactions.
-
-6. Frontend
-
-Smart Grid Dashboard: Displays production, consumption, and net energy with green/red indicators for surplus/deficit.
-
-Sell Energy: Form for creating energy listings and ideal location for P2P.
-
-Marketplace: Filters by Energy Type, Price, and Location; sorting by price, distance, and newest; listing disappears after purchase; success notifications.
-
-P2P: Shows nearest peers based on geolocation and seller listing.
-
-My Listings: Sorted by most recent with created_at_ms; badges for Active/Sold.
-
-Transactions: Displays transactions from owned objects and purchase events, sorted by the latest.
-
-7. UX & Reliability
-
-Toast & Status Banner: Displays transaction status (pending → submitted → confirmed/failed) with user-friendly notifications.
-
-Auto-create Profile Guard: The user profile is created only once per session to avoid duplication.
-
-Accurate Location: Location is decoded for clean display and accuracy in P2P transactions.
-
-Why DePIN (Decentralized Physical Infrastructure Networks)?
-
-Iota Smart Energy Grid models physical resources (energy and location) as on-chain objects. The use of IOTA Coin for transaction settlement offers an efficient solution with low costs and fast finality. The P2P system prioritizes local neighbors, empowering the community with low-cost and efficient energy transactions.
-
-How to Use
-
-Connect & Profile:
-
-Click "Enter App" to connect your wallet.
-
-The user profile will be created automatically if it doesn't already exist.
-
-Create Energy Listing:
-
-After login, choose Create Listing and enter the energy amount, price, energy type, and location.
-
-Energy Purchase:
-
-Choose a listing in Marketplace or P2P, adjust the filters, and calculate the total cost.
-
-After completing the transaction, the listing will be marked as Sold.
-
-Transaction History:
-
-View your transaction history on the Transactions page, with purchase details sorted by timestamp.
-
-Local Setup and Installation
-
-Clone the Repository:
-
+1️⃣ **Clone the Repository**
+```bash
 git clone https://github.com/Luthfi-1012/Iota-Smart-Energy-Grid.git
 cd Iota-Smart-Energy-Grid
+```
 
-
-Install Dependencies:
-
+2️⃣ **Install Dependencies**
+```bash
 npm install
+```
 
-
-Run the Application:
-
+3️⃣ **Start the Application**
+```bash
 npm start
+```
 
+4️⃣ **Open Your Browser**
+```
+Navigate to http://localhost:3000
+```
 
-Testing & Deployment:
-Perform testing and deploy the app according to your needs on the IOTA testnet or mainnet.
+---
 
-Technologies Used
+## 📖 How to Use
 
-IOTA: For blockchain-based energy transactions.
+### 🔌 Connect & Setup
+1. Click **"Enter App"** on the landing page
+2. Connect your IOTA-compatible wallet
+3. Your profile will be created automatically ✨
 
-React: For the user interface (UI).
+### 💰 Sell Your Energy
+1. Navigate to **"Sell Energy"** page
+2. Fill in the form:
+   - ⚡ Energy amount (Wh)
+   - 💵 Price per kWh (IOTA)
+   - 🔋 Energy type (Solar, Wind, etc.)
+   - 📍 Your location
+3. Click **"Create Listing"**
+4. Confirm the transaction in your wallet
 
-IOTA Dapp Kit: For interacting with the IOTA blockchain.
+### 🛍️ Buy Energy
+1. Choose **Marketplace** or **P2P** tab
+2. Apply filters to find the perfect listing
+3. Select a listing and click **"Buy"**
+4. Review the calculated cost
+5. Confirm the transaction
+6. Done! The listing is now marked as **Sold** 🎉
 
-Geolocation: For P2P and peer-to-peer recommendations.
+### 📜 View History
+- Check **"Transactions"** page for complete purchase history
+- All transactions sorted by latest first
+- View details: amount, price, timestamp, and status
 
-Contribution
+---
 
-If you'd like to contribute, fork this repository, create a new branch, and submit a pull request. All contributions are welcome!
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| ⛓️ **IOTA Blockchain** | Feeless, fast energy transactions |
+| ⚛️ **React** | Modern, responsive user interface |
+| 🔧 **IOTA Dapp Kit** | Blockchain interaction and wallet integration |
+| 📍 **Geolocation API** | P2P peer recommendations |
+| 🎨 **Tailwind CSS** | Beautiful, utility-first styling |
+
+---
+
+## 🌍 Why DePIN?
+
+**Decentralized Physical Infrastructure Networks (DePIN)** represent the future of physical resource management:
+
+- 🏘️ **Community Empowerment** - Trade directly with your neighbors
+- 💚 **Sustainable Energy** - Promote renewable energy adoption
+- 📉 **Lower Costs** - Eliminate middlemen and reduce fees
+- 🔄 **Grid Efficiency** - Reduce transmission losses with local trading
+- 🌱 **Green Future** - Support the transition to clean energy
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. 🍴 Fork the repository
+2. 🌿 Create a new branch (`git checkout -b feature/amazing-feature`)
+3. 💻 Make your changes
+4. ✅ Commit your changes (`git commit -m 'Add amazing feature'`)
+5. 📤 Push to the branch (`git push origin feature/amazing-feature`)
+6. 🎉 Open a Pull Request
+
+### 📋 Contribution Ideas
+- 🐛 Bug fixes and improvements
+- ✨ New features and enhancements
+- 📝 Documentation updates
+- 🎨 UI/UX improvements
+- 🧪 Test coverage
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 📞 Contact & Support
+
+- 🌐 **Website**: [Coming Soon]
+- 💬 **Discord**: [Join our community]
+- 🐦 **Twitter**: [@IotaEnergyGrid]
+- 📧 **Email**: support@iotaenergygrid.io
+
+---
+
+## 🙏 Acknowledgments
+
+- Thanks to the IOTA Foundation for the amazing blockchain technology
+- All contributors who helped make this project possible
+- The DePIN community for inspiration and support
+
+---
+
+<div align="center">
+
+### ⭐ Star us on GitHub — it helps!
+
+**Made with ❤️ for a sustainable energy future**
+
+[⬆ Back to Top](#-iota-smart-energy-grid)
+
+</div>
